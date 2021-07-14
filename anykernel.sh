@@ -6,12 +6,12 @@
 properties() { '
 kernel.string=iRISxe Kernel by osm0sis @ xda-developers
 kernel.for=KernelForDriver
-kernel.compiler=iRISTC Clang
+kernel.compiler=iRISxe Clang
 kernel.made=Ramadhan Angga @ramadhannangga
-kernel.version=44xxx
-kernel.type=xxx
-message.word=blablabla
-build.date=2077
+kernel.version=4.4.y
+kernel.type=XR
+message.word=Thanks for supported!!!
+build.date=2021
 build.type=stable
 do.devicecheck=1
 do.modules=0
