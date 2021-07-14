@@ -6,7 +6,7 @@
 properties() { '
 kernel.string=iRISxe Kernel by osm0sis @ xda-developers
 kernel.for=KernelForDriver
-kernel.compiler=iRISxe Clang
+kernel.compiler=iRIStc Clang
 kernel.made=Ramadhan Angga @ramadhannangga
 kernel.version=4.4.y
 kernel.type=XR
