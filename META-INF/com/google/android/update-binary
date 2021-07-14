@@ -274,14 +274,14 @@ do_devicecheck() {
   for testname in $(file_getprop anykernel.sh 'device.name.*'); do
     for devicename in $device $product $vendordevice $vendorproduct; do
       if [ "$devicename" == "$testname" ]; then
-        ui_print "$testname" " ";
+        ui_print "- OK ! ";
         match=1;
         break 2;
       fi;
     done;
   done;
   if [ ! "$match" ]; then
-    abort " " "Unsupported device. Aborting...";
+    abort "! Unsupported device , This Device is $devicename . Aborting... !";
   fi;
 }
 int2ver() {
@@ -314,10 +314,11 @@ do_versioncheck() {
       fi;
     done;
   fi;
+  ui_print "- Android Version: $android_ver ";
   if [ "$supported" ]; then
-    ui_print "$android_ver" " ";
+    ui_print "- OK !";
   else
-    abort " " "Unsupported Android version. Aborting...";
+    abort "! Unsupported Android version, This kernel only for Android $supported_ver . Aborting... !";
   fi;
 }
 do_levelcheck() {
@@ -464,7 +465,24 @@ if [ -f banner ]; then
 fi;
 
 KERNEL_STRING="$(file_getprop anykernel.sh kernel.string)";
-ui_print "$KERNEL_STRING";
+KERNEL_FOR="$(file_getprop anykernel.sh kernel.for)";
+KERNEL_COMPILER="$(file_getprop anykernel.sh kernel.compiler)";
+KERNEL_MADE="$(file_getprop anykernel.sh kernel.made)";
+KERNEL_VERSION="$(file_getprop anykernel.sh kernel.version)";
+KERNEL_TYPE="$(file_getprop anykernel.sh kernel.type)";
+MESSAGE_WORD="$(file_getprop anykernel.sh message.word)";
+BUILD_DATE="$(file_getprop anykernel.sh build.date)";
+DEVICE_NAME="$(file_getprop anykernel.sh device.name3)";
+BUILD_TYPE="$(file_getprop anykernel.sh build.type)";
+ui_print "-- Kernel Name    : $KERNEL_STRING";
+ui_print "-- Kernel Version : $KERNEL_VERSION";
+ui_print "-- Variant        : $KERNEL_FOR - $KERNEL_TYPE";
+ui_print "-- Compiler       : $KERNEL_COMPILER";
+ui_print "-- Device         : $DEVICE_NAME";
+ui_print "-- Build Date     : $BUILD_DATE";
+ui_print "-- Build Type     : $BUILD_TYPE";
+ui_print "-- Builded by     : $KERNEL_MADE";
+ui_print "_________________________________________________" " ";
 if [ -f version ]; then
   ui_print " ";
   ui_printfile version;
@@ -496,3 +514,5 @@ if [ "$(file_getprop anykernel.sh do.cleanup)" == 1 ]; then
 fi;
 
 ui_print " " " " "Done!";
+ui_print " " "_________________________________________________";
+ui_print " " "$MESSAGE_WORD" "_________________________________________________" " ";
